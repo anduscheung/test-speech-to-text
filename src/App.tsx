@@ -2,6 +2,7 @@ import "./App.css";
 
 import { useState } from "react";
 import SpeechToText from "./SpeechToText";
+import SpeechToText2 from "./SpeechToText2";
 
 const languages = ["zh-HK", "en-US", "fr-FR", "de-DE", "it-IT"];
 
@@ -30,6 +31,7 @@ function App() {
           })}
         </select>
       </div>
+      <div>1st method</div>
       {languages.map((lang) => {
         return speechLanguage === lang ? (
           <SpeechToText
@@ -39,6 +41,8 @@ function App() {
           />
         ) : null;
       })}
+      <div style={{ marginTop: 30 }}>2nd method</div>
+      <SpeechToText2 lang={speechLanguage} setDisplayText={setDisplayText} />
       <textarea
         name="displayText"
         rows={4}
