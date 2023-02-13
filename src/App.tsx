@@ -35,7 +35,6 @@ function App() {
           <SpeechToText
             key={lang}
             lang={lang}
-            currentLanguage={speechLanguage}
             setDisplayText={setDisplayText}
           />
         ) : null;

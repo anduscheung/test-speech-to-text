@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-const speechsdk = require("microsoft-cognitiveservices-speech-sdk");
+import * as speechsdk from "microsoft-cognitiveservices-speech-sdk";
 
 const speechConfig = speechsdk.SpeechConfig.fromSubscription(
   process.env.REACT_APP_SPEECH_KEY,
