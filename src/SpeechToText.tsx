@@ -2,13 +2,19 @@ import { useState, useEffect, useRef } from "react";
 import * as speechsdk from "microsoft-cognitiveservices-speech-sdk";
 
 const speechConfig = speechsdk.SpeechConfig.fromSubscription(
-  process.env.REACT_APP_SPEECH_KEY,
-  process.env.REACT_APP_SPEECH_REGION
+  process.env.REACT_APP_SPEECH_KEY || "",
+  process.env.REACT_APP_SPEECH_REGION || ""
 );
 
 const audioConfig = speechsdk.AudioConfig.fromDefaultMicrophoneInput();
 
-function SpeechToText({ lang, setDisplayText }) {
+function SpeechToText({
+  lang,
+  setDisplayText,
+}: {
+  lang: string;
+  setDisplayText: React.Dispatch<React.SetStateAction<string>>;
+}) {
   const recognizer = useRef(
     new speechsdk.SpeechRecognizer(speechConfig, audioConfig)
   );
