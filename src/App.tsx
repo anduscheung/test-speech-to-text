@@ -2,7 +2,6 @@ import "./App.css";
 
 import { useState } from "react";
 import SpeechToText from "./SpeechToTextExample";
-import SpeechToText2 from "./SpeechToText2";
 
 import WavToTextExampleContinuous from "./WavToTextExampleContinuous";
 
@@ -43,8 +42,6 @@ function App() {
           />
         ) : null;
       })}
-      <div style={{ marginTop: 30 }}>Speech config as Ref</div>
-      <SpeechToText2 lang={speechLanguage} setDisplayText={setDisplayText} />
 
       <textarea
         name="displayText"
