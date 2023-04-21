@@ -3,7 +3,8 @@ import "./App.css";
 import { useState } from "react";
 import SpeechToText from "./SpeechToTextExample";
 import SpeechToText2 from "./SpeechToText2";
-import WavToTextExample from "./WavToTextExample";
+
+import WavToTextExampleContinuous from "./WavToTextExampleContinuous";
 
 const languages = ["zh-HK", "en-US", "fr-FR", "de-DE", "it-IT"];
 
@@ -44,8 +45,7 @@ function App() {
       })}
       <div style={{ marginTop: 30 }}>Speech config as Ref</div>
       <SpeechToText2 lang={speechLanguage} setDisplayText={setDisplayText} />
-      <div style={{ marginTop: 30 }}>Test audio file to text</div>
-      <WavToTextExample />
+
       <textarea
         name="displayText"
         rows={4}
@@ -53,6 +53,8 @@ function App() {
         value={displayText}
         onChange={(e) => setDisplayText(e.target.value)}
       />
+
+      <WavToTextExampleContinuous />
     </div>
   );
 }
