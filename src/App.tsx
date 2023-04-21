@@ -1,8 +1,9 @@
 import "./App.css";
 
 import { useState } from "react";
-import SpeechToText from "./SpeechToText";
+import SpeechToText from "./SpeechToTextExample";
 import SpeechToText2 from "./SpeechToText2";
+import WavToTextExample from "./WavToTextExample";
 
 const languages = ["zh-HK", "en-US", "fr-FR", "de-DE", "it-IT"];
 
@@ -31,7 +32,7 @@ function App() {
           })}
         </select>
       </div>
-      <div>1st method</div>
+      <div>recognizer as ref</div>
       {languages.map((lang) => {
         return speechLanguage === lang ? (
           <SpeechToText
@@ -41,8 +42,10 @@ function App() {
           />
         ) : null;
       })}
-      <div style={{ marginTop: 30 }}>2nd method</div>
+      <div style={{ marginTop: 30 }}>Speech config as Ref</div>
       <SpeechToText2 lang={speechLanguage} setDisplayText={setDisplayText} />
+      <div style={{ marginTop: 30 }}>Test audio file to text</div>
+      <WavToTextExample />
       <textarea
         name="displayText"
         rows={4}
