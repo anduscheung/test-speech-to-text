@@ -1,14 +1,14 @@
 import * as sdk from "microsoft-cognitiveservices-speech-sdk";
-import { ChangeEvent, useState } from "react";
-
-const speechConfig = sdk.SpeechConfig.fromSubscription(
-  process.env.REACT_APP_SPEECH_KEY || "",
-  process.env.REACT_APP_SPEECH_REGION || ""
-);
-speechConfig.speechRecognitionLanguage = "en-US";
+import { ChangeEvent, useEffect, useState } from "react";
 
 export default function WavToTextExampleContinuous() {
+  const [recognizedText, setRecognized] = useState("");
   const [displayText, setDisplayText] = useState("");
+
+  useEffect(() => {
+    setDisplayText((prev) => `${prev} ${recognizedText}`.trim());
+  }, [recognizedText, setDisplayText]);
+
   async function fileChange(event: ChangeEvent<HTMLInputElement>) {
     if (!event.target.files) {
       return;
@@ -33,7 +33,7 @@ export default function WavToTextExampleContinuous() {
     recognizer.recognized = (s, e) => {
       if (e.result.reason === sdk.ResultReason.RecognizedSpeech) {
         console.log(`RECOGNIZED: Text=${e.result.text}`);
-        setDisplayText(e.result.text);
+        setRecognized(e.result.text);
       } else if (e.result.reason === sdk.ResultReason.NoMatch) {
         console.log("NOMATCH: Speech could not be recognized.");
       }
@@ -67,7 +67,7 @@ export default function WavToTextExampleContinuous() {
   return (
     <div>
       <div style={{ marginTop: 30 }}>
-        React Wav file to text with continuous recognition example
+        React Example: Wav file to text with continuous recognition
       </div>
       <div>
         <input
@@ -80,8 +80,8 @@ export default function WavToTextExampleContinuous() {
       </div>
       <textarea
         name="note"
-        rows={4}
-        cols={40}
+        rows={10}
+        cols={80}
         value={displayText}
         onChange={(e) => setDisplayText(e.target.value)}
       />
